@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".activities.AddHeroUsingBodyActivity">
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#f1f1f1"
+        android:hint="Enter Name"
+        android:inputType="text"
+        android:fontFamily="@font/acme"
+        android:paddingLeft="8dp"
+        android:textSize="13sp" />
+
+    <EditText
+        android:id="@+id/etDesc"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="8dp"
+        android:background="#f1f1f1"
+        android:gravity="bottom"
+        android:fontFamily="@font/acme"
+        android:hint="Enter Description"
+        android:inputType="textMultiLine"
+        android:paddingLeft="8dp"
+        android:paddingBottom="8dp"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:fontFamily="@font/acme"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFFFFF" />
+</LinearLayout>
