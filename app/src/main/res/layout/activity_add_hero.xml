@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,14 +9,24 @@
     android:padding="16dp"
     tools:context=".activities.AddHeroUsingBodyActivity">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgProfile"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:src="@drawable/profile"
+        android:onClick="browseImage"
+        app:civ_border_color="#ddd"
+        app:civ_border_width="2dp" />
+
     <EditText
         android:id="@+id/etName"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_marginTop="30dp"
         android:background="#f1f1f1"
+        android:fontFamily="@font/acme"
         android:hint="Enter Name"
         android:inputType="text"
-        android:fontFamily="@font/acme"
         android:paddingLeft="8dp"
         android:textSize="13sp" />
 
@@ -25,8 +36,8 @@
         android:layout_height="80dp"
         android:layout_marginTop="8dp"
         android:background="#f1f1f1"
-        android:gravity="bottom"
         android:fontFamily="@font/acme"
+        android:gravity="bottom"
         android:hint="Enter Description"
         android:inputType="textMultiLine"
         android:paddingLeft="8dp"
@@ -37,9 +48,9 @@
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:fontFamily="@font/acme"
         android:layout_marginTop="15dp"
         android:background="@color/colorPrimary"
+        android:fontFamily="@font/acme"
+        android:text="Register"
         android:textColor="#FFFFFF" />
 </LinearLayout>

@@ -16,7 +16,7 @@ public interface HeroAPI {
 
     @FormUrlEncoded
     @POST("heroes")
-    Call<Void> addHero(@Field("name") String name, @Field("desc") String desc);
+    Call<Void> addHero(@Field("name") String name, @Field("desc") String desc, @Field("image") String imagePath);
 
     @FormUrlEncoded
     @POST("heroes")
