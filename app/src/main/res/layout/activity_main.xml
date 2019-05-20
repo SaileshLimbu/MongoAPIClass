@@ -40,4 +40,14 @@
         android:text="Field Map"
         android:textAllCaps="false"
         android:textColor="#FFFFFF" />
+    <Button
+        android:id="@+id/btnShowHeroes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorAccent"
+        android:fontFamily="@font/acme"
+        android:text="Show All Heroes"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF" />
 </LinearLayout>

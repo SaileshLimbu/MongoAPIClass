@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.content.CursorLoader;
@@ -14,10 +15,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.IOException;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import np.com.softwarica.mongoapiclass.API.MyRetrofit;
 import np.com.softwarica.mongoapiclass.R;
 import np.com.softwarica.mongoapiclass.models.Hero;
+import np.com.softwarica.mongoapiclass.models.ImageResponse;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,15 +54,40 @@ public class AddHeroUsingBodyActivity extends AppCompatActivity implements View.
 
     @Override
     public void onClick(View v) {
+        File file = new File(imagePath);
+        RequestBody mFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("imageFile", file.getName(), mFile);
+
+        MyRetrofit.getAPI().uploadImage(fileToUpload).enqueue(new Callback<ImageResponse>() {
+            @Override
+            public void onResponse(Call<ImageResponse> call, Response<ImageResponse> response) {
+                if(response.isSuccessful()){
+                    saveHero(response.body().getFileName());
+                }else{
+                    Toast.makeText(context, "Failed to upload image.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ImageResponse> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void saveHero(String imageName) {
         String name = etName.getText().toString();
         String desc = etDesc.getText().toString();
 
-        Hero hero = new Hero(name, desc, name + ".jpg");
+        Hero hero = new Hero(name, desc, imageName);
         MyRetrofit.getAPI().addHero(hero).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(context, "Hero Added.", Toast.LENGTH_SHORT).show();
+                    etName.setText("");
+                    etDesc.setText("");
+                    imgProfile.setImageDrawable(getResources().getDrawable(R.drawable.profile));
                 } else {
                     Toast.makeText(context, "Failed to add hero", Toast.LENGTH_SHORT).show();
                 }

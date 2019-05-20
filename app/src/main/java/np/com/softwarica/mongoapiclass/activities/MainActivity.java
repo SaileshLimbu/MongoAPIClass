@@ -10,7 +10,7 @@ import np.com.softwarica.mongoapiclass.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btnFromBody, btnFromField, btnFromFieldMap;
+    private Button btnFromBody, btnFromField, btnFromFieldMap, btnShowHeroes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +20,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnFromBody = findViewById(R.id.btnFromBody);
         btnFromField = findViewById(R.id.btnFromField);
         btnFromFieldMap = findViewById(R.id.btnFromFieldMap);
+        btnShowHeroes = findViewById(R.id.btnShowHeroes);
 
         btnFromBody.setOnClickListener(this);
         btnFromField.setOnClickListener(this);
         btnFromFieldMap.setOnClickListener(this);
+        btnShowHeroes.setOnClickListener(this);
     }
 
     @Override
@@ -37,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnFromFieldMap:
                 startActivity(new Intent(this, AddHeroUsingFieldMapActivity.class));
+                break;
+            case R.id.btnShowHeroes:
+                startActivity(new Intent(this, ShowHeroesActivity.class));
                 break;
         }
     }
