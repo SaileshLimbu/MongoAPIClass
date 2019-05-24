@@ -3,6 +3,7 @@ package np.com.softwarica.mongoapiclass.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +39,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        if(!validate()) return;
         String username = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
@@ -57,5 +59,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private boolean validate(){
+        if(TextUtils.isEmpty(etUsername.getText().toString().trim())){
+            etUsername.setError("Please enter username.");
+            etUsername.requestFocus();
+            return false;
+        }else if(TextUtils.isEmpty(etPassword.getText().toString().trim())){
+            etPassword.setError("Please enter password.");
+            etPassword.requestFocus();
+            return false;
+        }
+        return true;
     }
 }
