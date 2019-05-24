@@ -36,7 +36,7 @@ public class ShowHeroesActivity extends AppCompatActivity {
     }
 
     private void loadHeroes() {
-        MyRetrofit.getAPI().getHeroes().enqueue(new Callback<ArrayList<Hero>>() {
+        MyRetrofit.getAPI().getHeroes(MyRetrofit.cookie).enqueue(new Callback<ArrayList<Hero>>() {
             @Override
             public void onResponse(Call<ArrayList<Hero>> call, Response<ArrayList<Hero>> response) {
                 if (response.isSuccessful()) {

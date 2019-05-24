@@ -5,6 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyRetrofit {
     private static Retrofit retrofit;
+    public static String cookie = "";
 
     public static HeroAPI getAPI() {
         if (retrofit == null) {

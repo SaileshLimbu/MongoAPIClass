@@ -55,7 +55,7 @@ public class AddHeroUsingFieldMapActivity extends AppCompatActivity implements V
         map.put("desc", desc);
         map.put("image", imagePath);
 
-        MyRetrofit.getAPI().addHero(map).enqueue(new Callback<Void>() {
+        MyRetrofit.getAPI().addHero(MyRetrofit.cookie, map).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {

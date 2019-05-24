@@ -58,7 +58,7 @@ public class AddHeroUsingBodyActivity extends AppCompatActivity implements View.
         RequestBody mFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("imageFile", file.getName(), mFile);
 
-        MyRetrofit.getAPI().uploadImage(fileToUpload).enqueue(new Callback<ImageResponse>() {
+        MyRetrofit.getAPI().uploadImage(MyRetrofit.cookie, fileToUpload).enqueue(new Callback<ImageResponse>() {
             @Override
             public void onResponse(Call<ImageResponse> call, Response<ImageResponse> response) {
                 if(response.isSuccessful()){
@@ -80,7 +80,7 @@ public class AddHeroUsingBodyActivity extends AppCompatActivity implements View.
         String desc = etDesc.getText().toString();
 
         Hero hero = new Hero(name, desc, imageName);
-        MyRetrofit.getAPI().addHero(hero).enqueue(new Callback<Void>() {
+        MyRetrofit.getAPI().addHero(MyRetrofit.cookie, hero).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {

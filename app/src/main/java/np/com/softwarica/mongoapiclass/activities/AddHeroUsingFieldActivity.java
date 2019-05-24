@@ -49,7 +49,7 @@ public class AddHeroUsingFieldActivity extends AppCompatActivity implements View
         String name = etName.getText().toString();
         String desc = etDesc.getText().toString();
 
-        MyRetrofit.getAPI().addHero(name, desc, imagePath).enqueue(new Callback<Void>() {
+        MyRetrofit.getAPI().addHero(MyRetrofit.cookie, name, desc, imagePath).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
